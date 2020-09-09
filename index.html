@@ -4,46 +4,18 @@
     <meta name="viewport" content="width=device-width" charset="utf-8">
     <title>Product App</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-  </head>
+</head>
   <body>
-
-   <div class="nav-bar"></div>
-
-  <div id="app">
-    <div class="product">
-
-
-      <div class="product-image">
-        <img v-bind:src="image" v-bind:alt="altText">
+    <div class="nav-bar"></div>
+    <div id="app">
+      <div class="cart">
+        <p>Cart({{cart.length}})</p>
        </div>
 
-       <div class="product-info">
-         <h1>{{title }}</h1>
-         <p v-if="inStock">In Stock</p>
-         <p v-else :class="{outOfStock: !inStock}">Out of Stock</p>
+     <product :premium="premium" @add-to-cart="updateCart"></product>
+    </div>
 
-         <ul>
-           <li v-for="detail in details">{{detail}}</li>
-         </ul>
-
-         <div v-for="(variant, index) in variants"
-              :key="variant.variantId"
-              class="color-box"
-              :style="{ backgroundColor: variant.variantColor}"
-              @mouseover="updateProduct(index)">
-         </div>
-
-         <button v-on:click="addToCart"
-                 :disabled="!inStock"
-                 :class="{disabledButton: !inStock}">Add to Cart</button>
-
-         <div class="cart">
-           <p>Cart({{cart}})</p>
-          </div>
-
-       </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <script src="main.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/vue" > </script>
+   <script src="main.js"></script>
   </body>
 </html>
